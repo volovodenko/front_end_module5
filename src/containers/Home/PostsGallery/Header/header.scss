@@ -1,0 +1,17 @@
+.headGallery {
+  display: flex;
+  justify-content: space-between;
+  box-sizing: border-box;
+  position: relative;
+  height: 36px;
+  width: 100%;
+  padding: 0 50px;
+
+  color: #b3c2c2;
+  text-transform: uppercase;
+  letter-spacing: 1.3px;
+  line-height: 32px;
+  font-size: 16px;
+  font-weight: bold;
+}
+

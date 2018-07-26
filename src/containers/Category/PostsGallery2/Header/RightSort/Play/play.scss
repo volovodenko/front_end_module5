@@ -1,0 +1,39 @@
+
+.headGallery-rightSort .headGallery-view {
+
+  margin-left: 20px;
+  position: relative;
+
+  i {
+    font-size: 1.5rem;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .headGallery-view_title {
+    position: absolute;
+    z-index: 1000;
+    font-size: 11px;
+    width: 120px;
+    text-align: center;
+    right: -50px;
+    bottom: -40px;
+    border-radius: 3px;
+    color: white;
+    background-color: #1bb76e;
+    box-shadow: 1px 1px 5px black;
+    text-transform: none;
+
+    &::before {
+      content: '';
+      position: absolute;
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-bottom: 10px solid #1bb76e;
+      right: 52px;
+      top: -10px;
+    }
+  }
+
+}

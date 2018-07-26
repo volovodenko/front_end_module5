@@ -1,0 +1,68 @@
+
+.TrendingTags-header_sort {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+  right: 25px;
+  bottom: calc(50% - 16px);
+
+  & > span {
+    margin-right: 15px;
+  }
+
+  & > .dropDown {
+    &:hover {
+      cursor: pointer;
+    }
+
+    i {
+      margin-left: 10px;
+
+    }
+  }
+
+}
+
+.SortDropDown-menu {
+  position: absolute;
+  z-index: 1000;
+  //opacity: 1;
+  //transition: opacity 500ms ease-out;
+  background-color: #53565d;
+  top: 20px;
+  right: 10px;
+  color: white;
+  padding: 10px 0;
+  border-radius: 5px;
+  box-shadow: 1px 1px 5px black;
+
+  &::before {
+    content: '';
+    position: absolute;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid #53565d;
+    right: 11px;
+    top: -10px;
+  }
+
+  & > li {
+    text-align: left;
+    list-style: none;
+    margin: 0;
+    padding: 0 10px;
+    color: #b3c2c2;
+
+    &:hover {
+      cursor: pointer;
+      background-color: hsla(0, 0%, 80%, .29);
+    }
+  }
+
+  & > .active {
+    color: white;
+  }
+
+}
