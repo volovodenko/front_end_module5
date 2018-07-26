@@ -19,8 +19,6 @@ export default class PostsGallery extends Component {
         this.rightSortBy = this.props.rightSortBy;
         this.page = 0;
 
-        this.props.onGetHomeGalleryList(0);
-
 
         this.state = {
             numberCardRows: 5,
@@ -57,10 +55,6 @@ export default class PostsGallery extends Component {
     }
 
     render() {
-        if (!this.props.homeGalleryLoaded) {
-            return null;
-        }
-
         this.homeGalleryList = this.props.homeGalleryList.slice();
 
 

@@ -59,9 +59,13 @@ export default class Home extends Component {
     constructor(props) {
         super(props);
 
-        this.props.onGetGalleryTags();
+        if (!this.props.galleryTagsLoaded) {
+            this.props.onGetGalleryTags();
+        }
 
-
+        if (!this.props.homeGalleryLoaded){
+            this.props.onGetHomeGalleryList(0);
+        }
 
     }
 
@@ -75,7 +79,7 @@ export default class Home extends Component {
         return (
             <Fragment>
                 {this.props.galleryTagsLoaded ? <Tags {...this.props}/> : null}
-                <PostsGallery {...this.props}/>
+                {this.props.homeGalleryLoaded ? <PostsGallery {...this.props}/> : null }
             </Fragment>
         )
     }
