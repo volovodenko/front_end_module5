@@ -36,7 +36,7 @@ export default class Posts2 extends Component {
 
     render() {
 
-        let startIndexItem = (Math.round((window.pageYOffset - 1425) / 285) + 1) * this.props.numberCardsInRow;
+        let startIndexItem = (Math.round((this.state.scroll - 1425) / 285) + 1) * this.props.numberCardsInRow;
 
         if (startIndexItem < 0) {
             startIndexItem = 0;

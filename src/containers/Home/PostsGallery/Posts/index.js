@@ -39,7 +39,7 @@ export default class Posts extends Component {
         const headerHeight = (this.props.numberTagRows * 214);
 
 
-        let startIndexItem = (Math.round((window.pageYOffset - (headerHeight/7.5) - 1425) / 285) + 1) * this.props.numberCardsInRow;
+        let startIndexItem = (Math.round((this.state.scroll - (headerHeight/7.5) - 1425) / 285) + 1) * this.props.numberCardsInRow;
 
         if (startIndexItem < 0) {
             startIndexItem = 0;
