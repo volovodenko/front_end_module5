@@ -12,35 +12,39 @@ export default class Posts extends Component {
         // console.log('create list');
 
 
-        // this.state = {
-        //     scroll: window.pageYOffset,
-        // };
+        this.state = {
+            scroll: window.pageYOffset,
+        };
 
-        //
-        // document.addEventListener('scroll', ::this.handleScroll, false);
-        // document.addEventListener('click', ::this.handleScroll, false);
+        this.handleScroll = ::this.handleScroll;
+
     }
 
     componentWillUnmount() {
-        // document.removeEventListener('scroll', ::this.handleScroll, false);
-        // document.removeEventListener('click', ::this.handleScroll, false);
+        document.removeEventListener('scroll', this.handleScroll, false);
+        document.removeEventListener('click', this.handleScroll, false);
     }
 
     componentDidUpdate() {
         this.videoPlayPause(); //обновлять свойства воспроизведения для новых данных
     }
 
+    componentDidMount(){
+        document.addEventListener('scroll', this.handleScroll, false);
+        document.addEventListener('click', this.handleScroll, false);
+    }
+
 
     render() {
-        // const headerHeight = (this.props.numberTagRows * 214);
-        //
-        //
-        // let startIndexItem = (Math.round((window.pageYOffset - (headerHeight/7.5) - 1425) / 285) + 1) * this.props.numberCardsInRow;
-        //
-        // if (startIndexItem < 0) {
-        //     startIndexItem = 0;
-        // }
-        // let endIndexItem = startIndexItem + 10 * this.props.numberCardsInRow - 1;
+        const headerHeight = (this.props.numberTagRows * 214);
+
+
+        let startIndexItem = (Math.round((window.pageYOffset - (headerHeight/7.5) - 1425) / 285) + 1) * this.props.numberCardsInRow;
+
+        if (startIndexItem < 0) {
+            startIndexItem = 0;
+        }
+        let endIndexItem = startIndexItem + 10 * this.props.numberCardsInRow - 1;
 
 
         return (
@@ -52,9 +56,9 @@ export default class Posts extends Component {
                             return this.postWrapperRender(index);
                         }
 
-                        // if (index < startIndexItem || index > endIndexItem) {
-                        //     return this.postWrapperRender(index);
-                        // }
+                        if (index < startIndexItem || index > endIndexItem) {
+                            return this.postWrapperRender(index);
+                        }
 
                         return this.itemRender(item, index);
                     })
@@ -67,23 +71,46 @@ export default class Posts extends Component {
      *
      **************************************************************************/
 
-    // handleScroll() {
-    //     this.setState(() => ({
-    //         scroll: window.pageYOffset
-    //     }));
-    //
-    // }
+    handleScroll() {
+        this.setState(() => ({
+            scroll: window.pageYOffset
+        }));
+
+    }
 
     videoPlayPause() {
         const video = document.getElementsByTagName('video');
 
         if (!this.props.autoPlay) {
             for (let item of video) {
-                item.pause();
+
+                let playPromise = item.pause();
+
+                if (playPromise !== undefined) {
+                    playPromise.then(() => {
+                        // Automatic playback started!
+                        // Show playing UI.
+                    })
+                        .catch(() => {
+                            // Auto-play was prevented
+                            // Show paused UI.
+                        });
+                }
             }
         } else {
             for (let item of video) {
-                item.play();
+                let playPromise = item.play();
+
+                if (playPromise !== undefined) {
+                    playPromise.then(() => {
+                        // Automatic playback started!
+                        // Show playing UI.
+                    })
+                        .catch(() => {
+                            // Auto-play was prevented
+                            // Show paused UI.
+                        });
+                }
 
             }
         }

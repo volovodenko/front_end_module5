@@ -12,33 +12,36 @@ export default class Posts2 extends Component {
         // console.log('create list');
 
 
-        // this.state = {
-        //     scroll2: window.pageYOffset,
-        // };
-        //
-        //
-        // document.addEventListener('scroll', ::this.handleScroll, false);
-        // document.addEventListener('click', ::this.handleScroll, false);
+        this.state = {
+            scroll: window.pageYOffset,
+        };
+
+        this.handleScroll = ::this.handleScroll;
     }
 
-    // componentWillUnmount() {
-    //     document.removeEventListener('scroll', ::this.handleScroll, false);
-    //     document.removeEventListener('click', ::this.handleScroll, false);
-    // }
+    componentWillUnmount() {
+        document.removeEventListener('scroll', this.handleScroll, false);
+        document.removeEventListener('click', this.handleScroll, false);
+    }
 
     componentDidUpdate() {
         this.videoPlayPause(); //обновлять свойства воспроизведения для новых данных
     }
 
+    componentDidMount() {
+        document.addEventListener('scroll', this.handleScroll, false);
+        document.addEventListener('click', this.handleScroll, false);
+    }
+
 
     render() {
 
-        // let startIndexItem = (Math.round((this.props.yOffset - 1425) / 285) + 1) * this.props.numberCardsInRow;
-        //
-        // if (startIndexItem < 0) {
-        //     startIndexItem = 0;
-        // }
-        // let endIndexItem = startIndexItem + 10 * this.props.numberCardsInRow - 1;
+        let startIndexItem = (Math.round((window.pageYOffset - 1425) / 285) + 1) * this.props.numberCardsInRow;
+
+        if (startIndexItem < 0) {
+            startIndexItem = 0;
+        }
+        let endIndexItem = startIndexItem + 10 * this.props.numberCardsInRow - 1;
 
 
         return (
@@ -50,9 +53,9 @@ export default class Posts2 extends Component {
                             return this.postWrapperRender(index);
                         }
 
-                        // if (index < startIndexItem || index > endIndexItem) {
-                        //     return this.postWrapperRender(index);
-                        // }
+                        if (index < startIndexItem || index > endIndexItem) {
+                            return this.postWrapperRender(index);
+                        }
 
                         return this.itemRender(item, index);
                     })
@@ -65,23 +68,46 @@ export default class Posts2 extends Component {
      *
      **************************************************************************/
 
-    // handleScroll() {
-    //     this.setState(() => ({
-    //         scroll2: window.pageYOffset
-    //     }));
-    //
-    // }
+    handleScroll() {
+        this.setState(() => ({
+            scroll: window.pageYOffset
+        }));
+
+    }
 
     videoPlayPause() {
         const video = document.getElementsByTagName('video');
 
         if (!this.props.autoPlay) {
             for (let item of video) {
-                item.pause();
+
+                let playPromise = item.pause();
+
+                if (playPromise !== undefined) {
+                    playPromise.then(() => {
+                        // Automatic playback started!
+                        // Show playing UI.
+                    })
+                        .catch(() => {
+                            // Auto-play was prevented
+                            // Show paused UI.
+                        });
+                }
             }
         } else {
             for (let item of video) {
-                item.play();
+                let playPromise = item.play();
+
+                if (playPromise !== undefined) {
+                    playPromise.then(() => {
+                        // Automatic playback started!
+                        // Show playing UI.
+                    })
+                        .catch(() => {
+                            // Auto-play was prevented
+                            // Show paused UI.
+                        });
+                }
 
             }
         }
@@ -156,7 +182,7 @@ export default class Posts2 extends Component {
 
         return (
             <li key={item.id} className='gallery-item'>
-                <Link to={{ pathname: `/gallery/${item.id}`, state: { postItem: item} }}>
+                <Link to={{pathname: `/gallery/${item.id}`, state: {postItem: item}}}>
 
                     <div className='gallery-item_media'>
                         {animated ? this.videoRender(item) : this.imgRender(item)}
