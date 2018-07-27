@@ -64,7 +64,7 @@ export default class PostsGallery2 extends Component {
         //обрезаем длину массива до необходимого значения
         this.categoryGalleryList.length = this.numberCardsInRow * this.state.numberCardRows;
 
-
+//
         return (
             <section className='posts'>
 
