@@ -24,8 +24,6 @@ export default class PostsGallery2 extends Component {
             numberCardRows: 5,
         };
 
-        this.props.onGetCategoryGalleryList(this.props.match.params.tag, 0);
-
 
         const w = window.screen.availWidth;
         const numberCardsInRow = Math.floor((w - 100) / 260);

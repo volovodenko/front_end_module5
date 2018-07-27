@@ -7,6 +7,7 @@ import PostsGallery2 from './PostsGallery2';
 import
 {
     onGetCategoryGalleryList, onSetRightSort, onChangeAutoPlay, onClearCategoryGalleryList,
+    onSetCurrentCategory,
 } from '../Home/actions';
 
 import {onChangeTakeUpVisible} from '../SubMain/actions';
@@ -25,6 +26,8 @@ const mapStateToProps = state => ({
 
     autoPlay: state.home.autoPlay,
 
+    currentCategory: state.home.currentCategory,
+
     takeUp: state.subMain.takeUp,
     takeUpVisible: state.subMain.takeUpVisible,
 
@@ -36,6 +39,7 @@ const mapStateToProps = state => ({
     mapStateToProps,
     {
         onGetCategoryGalleryList, onSetRightSort, onChangeAutoPlay, onClearCategoryGalleryList,
+        onSetCurrentCategory,
         onChangeTakeUpVisible
     },
     null,
@@ -48,11 +52,18 @@ export default class Categories extends Component {
         super(props);
         // window.scrollTo(0, 0); //обнулить прокрутку
 
-        this.props.onGetCategoryGalleryList(this.props.match.params.tag, 0);
+        if (this.props.currentCategory !== this.props.match.params.tag) {
+            this.props.onClearCategoryGalleryList();
+            this.props.onGetCategoryGalleryList(this.props.match.params.tag, 0);
+        }
+
+        this.props.onSetCurrentCategory(this.props.match.params.tag);
+
+        // this.props.onGetCategoryGalleryList(this.props.match.params.tag, 0);
     }
 
     componentWillUnmount(){
-        this.props.onClearCategoryGalleryList();
+        // this.props.onClearCategoryGalleryList();
     }
 
     render() {

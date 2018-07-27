@@ -7,10 +7,13 @@ export default class Comments extends Component {
 
     render() {
         const baseUrl = 'https://imgur.com';
+        const commentsCount =  this.props.albumInfoLoaded
+            ? this.props.albumInfo.comment_count
+            : this.props.imageInfo.comment_count;
         // console.log(this.props.postComments);
         return (
             <div className='post-comments'>
-                <p>{this.props.postItem.comment_count} comments</p>
+                <p>{commentsCount} comments</p>
                 <ul>
                     {
                         this.props.postComments.map(item => {

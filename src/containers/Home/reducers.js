@@ -32,6 +32,8 @@ const initialState = {
 
     fetchFail: false,
 
+    currentCategory: null,
+
 
 
 };
@@ -166,6 +168,12 @@ export default function homeReducer(stateStore = initialState, action) { //state
                 categoryData: [],
                 categoryGalleryIsLoading: false,
                 categoryGalleryLoaded: false,
+            });
+
+        /****************************************************************************/
+        case 'SET_CURRENT_CATEGORY':
+            return Object.assign({}, stateStore, {
+                currentCategory: action.payload
             });
 
         /****************************************************************************/

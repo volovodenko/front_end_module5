@@ -63,6 +63,7 @@ export const onGetAlbumInfo = (hash) => dispatch => {
             }
         })
         .catch(err => {
+            console.clear();
             dispatch(albumInfoFetchFail(err.response.data.message));
         });
 };
@@ -98,6 +99,7 @@ export const onGetImageInfo = (hash) => dispatch => {
             }
         })
         .catch(err => {
+            console.clear();
             dispatch(imageInfoFetchFail(err.response.data.message));
         });
 };

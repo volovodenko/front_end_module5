@@ -10,7 +10,7 @@ export default class Image extends Component {
         return (
             <div className='post-content_image'>
 
-                {this.props.postItem.is_album ? this.albumRender() : this.itemRender()}
+                {this.props.albumInfoLoaded ? this.albumRender() : this.itemRender()}
 
             </div>
 

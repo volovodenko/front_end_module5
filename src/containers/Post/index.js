@@ -29,6 +29,12 @@ const mapStateToProps = state => ({
 
     takeUpVisible: state.subMain.takeUpVisible,
 
+    // homeGalleryLoaded: state.home.homeGalleryLoaded,
+    // homeGalleryList: state.home.homeGalleryList,
+    //
+    // categoryGalleryList: state.home.categoryGalleryList,
+    // categoryGalleryLoaded: state.home.categoryGalleryLoaded,
+
 });
 
 
@@ -48,13 +54,19 @@ export default class Post extends Component {
         super(props);
         window.scrollTo(0, 0); //обнулить прокрутку
 
-        const {postItem} = this.props.location.state;
+        // const arrayList = [].concat(this.props.homeGalleryList, this.props.categoryGalleryList);
+        //
+        // const filtered = arrayList.filter(item => item.id === this.props.match.params.hash);
+        // console.log(f[0]);
+        //
+        // this.postItem = filtered[0];
 
-        this.postItem = postItem;
+        this.props.onGetAlbumInfo(this.props.match.params.hash);
+        this.props.onGetImageInfo(this.props.match.params.hash);
 
-        postItem.is_album
-            ? this.props.onGetAlbumInfo(this.props.match.params.hash)
-            : this.props.onGetImageInfo(this.props.match.params.hash);
+        // postItem.is_album
+        //     ? this.props.onGetAlbumInfo(this.props.match.params.hash)
+        //     : this.props.onGetImageInfo(this.props.match.params.hash);
 
         this.props.onGetPostComments(this.props.match.params.hash);
 
@@ -69,21 +81,20 @@ export default class Post extends Component {
         document.removeEventListener('click', this.handleScroll, false);
     }
 
-    componentDidMount(){
+    componentDidMount() {
         document.addEventListener('scroll', this.handleScroll, false);
         document.addEventListener('click', this.handleScroll, false);
     }
 
 
-
     render() {
 
-        const contentLoaded = (this.postItem.is_album && this.props.albumInfoLoaded) || this.props.imageInfoLoaded;
+        const contentLoaded = this.props.albumInfoLoaded || this.props.imageInfoLoaded;
 
         return (
             <section className='post'>
-                {contentLoaded ? <Content {...this.props} postItem={this.postItem}/> : null}
-                {this.props.postCommentsLoaded ? <Comments {...this.props} postItem={this.postItem}/> : null}
+                {contentLoaded ? <Content {...this.props} /> : null}
+                {this.props.postCommentsLoaded ? <Comments {...this.props}/> : null}
             </section>
 
         )

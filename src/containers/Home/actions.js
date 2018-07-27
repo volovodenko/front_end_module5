@@ -278,3 +278,16 @@ const clearCategoryGalleryList = () => ({
 export const onClearCategoryGalleryList = () => dispatch => {
     dispatch(clearCategoryGalleryList());
 };
+
+/*************************************************************************
+ * SET CURRENT CATEGORY
+ *************************************************************************/
+const setCurrentCategory = (data) => ({
+    type: 'SET_CURRENT_CATEGORY',
+    payload: data
+});
+
+export const onSetCurrentCategory = (data) => dispatch => {
+    dispatch(setCurrentCategory(data));
+};
+
