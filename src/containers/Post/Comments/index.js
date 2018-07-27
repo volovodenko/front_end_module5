@@ -62,7 +62,15 @@ export default class Comments extends Component {
             )
         }
 
+
         let src = url[0];
+        const https = src.match(/^https/);
+
+        if (!https) {
+            src = url[0].replace(/^http/, 'https');
+        }
+
+
 
         if (type === 'mp4') {
             media = <video loop autoPlay muted src={src}/>
