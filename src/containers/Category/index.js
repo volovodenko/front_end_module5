@@ -46,7 +46,7 @@ export default class Categories extends Component {
 
     constructor(props) {
         super(props);
-        window.scrollTo(0, 0); //обнулить прокрутку
+        // window.scrollTo(0, 0); //обнулить прокрутку
 
         this.props.onGetCategoryGalleryList(this.props.match.params.tag, 0);
     }

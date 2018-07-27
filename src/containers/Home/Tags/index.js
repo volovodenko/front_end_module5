@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 
-
 import './tags.scss';
 import Tag from './Tag';
 import Buttons from './Buttons';

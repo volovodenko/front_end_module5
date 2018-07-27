@@ -278,4 +278,3 @@ const clearCategoryGalleryList = () => ({
 export const onClearCategoryGalleryList = () => dispatch => {
     dispatch(clearCategoryGalleryList());
 };
-

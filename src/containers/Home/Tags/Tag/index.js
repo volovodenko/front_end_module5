@@ -2,7 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 
 import './tag.scss';
-import {BASE_URL_TAGS_IMAGE} from '../../../../config';
+import {BASE_URL_IMAGES} from '../../../../config';
 
 const Tag = ({galleryTagsList}) => {
 
@@ -10,7 +10,7 @@ const Tag = ({galleryTagsList}) => {
 
         const linkStyle = {
             backgroundImage:
-                `url('${BASE_URL_TAGS_IMAGE}/${item.background_hash}_d.jpg?maxwidth=800&shape=thumb&fidelity=high')`
+                `url('${BASE_URL_IMAGES}/${item.background_hash}_d.jpg?maxwidth=800&shape=thumb&fidelity=high')`
         };
 
         return (

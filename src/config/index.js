@@ -1,1 +1,1 @@
-export const BASE_URL_TAGS_IMAGE = 'https://i.imgur.com';
+export const BASE_URL_IMAGES = 'https://i.imgur.com';

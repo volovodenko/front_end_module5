@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 
 import './header.scss';
-import {BASE_URL_TAGS_IMAGE} from '../../../config';
+import {BASE_URL_IMAGES} from '../../../config';
 
 
 
 export default class Header extends Component {
     render() {
-        const url = `${BASE_URL_TAGS_IMAGE}/${this.props.categoryData.background_hash}.jpg`;
+        const url = `${BASE_URL_IMAGES}/${this.props.categoryData.background_hash}.jpg`;
         const style = {backgroundImage: `url(${url})`};
 
         return (

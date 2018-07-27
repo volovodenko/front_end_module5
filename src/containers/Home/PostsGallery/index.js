@@ -158,7 +158,7 @@ export default class PostsGallery extends Component {
                 if (this._ismounted) {
                     //добавляем 5 строк карточек
                     this.setState({
-                        numberCardRows: this.state.numberCardRows + 10
+                        numberCardRows: this.state.numberCardRows + 2
                     });
                 }
 

@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 
 import './posts.scss';
-import {BASE_URL_TAGS_IMAGE} from '../../../../config';
+import {BASE_URL_IMAGES} from '../../../../config';
 import Loader from '../../../../components/Loader';
 
 export default class Posts extends Component {
@@ -95,7 +95,7 @@ export default class Posts extends Component {
         const imgStyle = this.getStyle(item);
 
         return (
-            <img src={`${BASE_URL_TAGS_IMAGE}/${imgId}_d.jpg?maxwidth=520&amp;shape=thumb&amp;fidelity=high`}
+            <img src={`${BASE_URL_IMAGES}/${imgId}_d.jpg?maxwidth=520&amp;shape=thumb&amp;fidelity=high`}
                  style={imgStyle}
                  id={imgId}
                  onLoad={::this.onLoadHide(imgId)}
@@ -103,16 +103,18 @@ export default class Posts extends Component {
         )
     }
 
+
+
     videoRender(item) {
         const videoId = item.is_album ? item.images[0].id : item.id;
         const typeVideo = item.is_album ? item.images[0].type : item.type;
         const videoStyle = this.getStyle(item);
 
         return (
-            <video src={`${BASE_URL_TAGS_IMAGE}/${videoId}_lq.mp4`}
+            <video src={`${BASE_URL_IMAGES}/${videoId}_lq.mp4`}
                    type={typeVideo}
                    id={videoId}
-                   poster={`${BASE_URL_TAGS_IMAGE}/${videoId}_d.jpg?maxwidth=520&amp;shape=thumb&amp;fidelity=high`}
+                   poster={`${BASE_URL_IMAGES}/${videoId}_d.jpg?maxwidth=520&amp;shape=thumb&amp;fidelity=high`}
                    loop
                    onCanPlay={::this.onLoadHide(videoId)}
                    autoPlay
@@ -145,6 +147,7 @@ export default class Posts extends Component {
         )
     }
 
+
     itemRender(item) {
         let animated;
 
@@ -158,7 +161,7 @@ export default class Posts extends Component {
 
         return (
             <li key={item.id} className='gallery-item'>
-                <Link to={`/gallery/${item.id}`}>
+                <Link to={{ pathname: `/gallery/${item.id}`, state: { postItem: item} }}>
 
                     <div className='gallery-item_media'>
                         {animated ? this.videoRender(item) : this.imgRender(item)}
