@@ -8,7 +8,7 @@ const initialState = {
     galleryTagLoaded: false,
 
     numberTagRows: 1,
-    numberTagsInRow: 1,
+    numberTagsInRow: 8,
 
     sortTagsBy: 'posts',
 

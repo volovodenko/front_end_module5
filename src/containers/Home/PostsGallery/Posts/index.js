@@ -39,16 +39,12 @@ export default class Posts extends Component {
         const headerHeight = (this.props.numberTagRows * 214);
 
 
-        let startIndexItem = (Math.round((this.state.scroll - (headerHeight/7.5) - 1425) / 285) + 1) * this.props.numberCardsInRow;
+        let startIndexItem = (Math.round((this.state.scroll - headerHeight - 1425) / 285) + 1) * this.props.numberCardsInRow;
 
         if (startIndexItem < 0) {
             startIndexItem = 0;
         }
         let endIndexItem = startIndexItem + 10 * this.props.numberCardsInRow - 1;
-
-        console.log('startIndex='+startIndexItem);
-        console.log('numberTagRows='+this.props.numberTagRows);
-
 
         return (
             <ul className='gallery'>

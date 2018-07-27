@@ -16,9 +16,9 @@ export default class Tags extends Component {
         super(props);
 
         const w = window.screen.availWidth;
-        let numberTagsInRow = Math.ceil((w - 300) / 127);
-        numberTagsInRow = numberTagsInRow > 8 ? 8 : numberTagsInRow;
-        this.props.onsetNumberTagsInRow(numberTagsInRow);
+        this.numberTagsInRow = Math.ceil((w - 300) / 127);
+        this.numberTagsInRow = this.numberTagsInRow > 8 ? 8 : this.numberTagsInRow;
+        this.props.onsetNumberTagsInRow(this.numberTagsInRow);
 
     }
 
@@ -55,12 +55,8 @@ export default class Tags extends Component {
 
     sortOperations() {
         if (!this.maxTagRows) {
-            this.maxTagRows = Math.ceil(this.props.galleryTagsList.length / this.props.numberTagsInRow);
+            this.maxTagRows = Math.ceil(this.props.galleryTagsList.length / this.numberTagsInRow);
         }
-
-        console.log('galleryTagsList.length='+this.props.galleryTagsList.length);
-        console.log('numberTagsInRow='+this.props.numberTagsInRow);
-        console.log('this.maxTagRows='+ this.maxTagRows);
 
         if (this.props.sortTagsBy === 'posts') {
             this.sortByPosts();
@@ -71,7 +67,7 @@ export default class Tags extends Component {
         }
 
         //обрезаем длину массива до необходимого значения
-        this.galleryTagsList.length = this.props.numberTagsInRow * this.props.numberTagRows;
+        this.galleryTagsList.length = this.numberTagsInRow * this.props.numberTagRows;
     }
 
 
