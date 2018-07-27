@@ -58,7 +58,7 @@ export default class Tags extends Component {
             this.maxTagRows = Math.ceil(this.props.galleryTagsList.length / this.props.numberTagsInRow);
         }
 
-        console.log('this.maxTagRows='this.maxTagRows);
+        console.log('this.maxTagRows='+this.maxTagRows);
 
         if (this.props.sortTagsBy === 'posts') {
             this.sortByPosts();
