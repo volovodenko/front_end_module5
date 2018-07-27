@@ -8,8 +8,9 @@ import Comments from './Comments';
 
 import
 {
-    onGetPostComments, onGetAlbumInfo, onGetImageInfo, onclearCommentsPostImage
+    onGetPostComments, onGetAlbumInfo, onGetImageInfo, onClearCommentsPostImage
 } from './actions';
+import {onChangeTakeUpVisible} from '../SubMain/actions';
 
 
 const mapStateToProps = state => ({
@@ -26,13 +27,16 @@ const mapStateToProps = state => ({
     imageInfoIsLoading: state.post.imageInfoIsLoading,
     imageInfoLoaded: state.post.imageInfoLoaded,
 
+    takeUpVisible: state.subMain.takeUpVisible,
+
 });
 
 
 @connect(
     mapStateToProps,
     {
-        onGetPostComments, onGetAlbumInfo, onGetImageInfo, onclearCommentsPostImage
+        onGetPostComments, onGetAlbumInfo, onGetImageInfo, onClearCommentsPostImage,
+        onChangeTakeUpVisible
     },
     null,
     {pure: false}
@@ -54,11 +58,22 @@ export default class Post extends Component {
 
         this.props.onGetPostComments(this.props.match.params.hash);
 
+        this.handleScroll = ::this.handleScroll;
+        this.lastScroll = 0;
+
     }
 
     componentWillUnmount() {
-        this.props.onclearCommentsPostImage();
+        this.props.onClearCommentsPostImage();
+        document.removeEventListener('scroll', this.handleScroll, false);
+        document.removeEventListener('click', this.handleScroll, false);
     }
+
+    componentDidMount(){
+        document.addEventListener('scroll', this.handleScroll, false);
+        document.addEventListener('click', this.handleScroll, false);
+    }
+
 
 
     render() {
@@ -78,5 +93,30 @@ export default class Post extends Component {
     /***************************************************************************
      *
      **************************************************************************/
+
+    handleScroll() {
+        const currentScroll = window.pageYOffset;
+
+        const deltaScroll = currentScroll - this.lastScroll;
+        this.lastScroll = currentScroll;
+
+        if (deltaScroll > 0) { //двигаемся вниз
+            // (scrollHeight - currentScroll - clientHeight) < 300
+
+            if (currentScroll > 800 && !this.props.takeUpVisible) {
+                this.props.onChangeTakeUpVisible(true);
+            }
+
+
+        } else { //двигаемся вверх
+
+            if (currentScroll < 300 && this.props.takeUpVisible) {
+                this.props.onChangeTakeUpVisible(false);
+            }
+
+
+        }
+
+    }
 
 }

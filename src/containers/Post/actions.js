@@ -110,6 +110,6 @@ const clearCommentsPostImage = () => ({
     type: 'CLEAR_COMMENTS_POST_IMAGE',
 });
 
-export const onclearCommentsPostImage = () => dispatch => {
+export const onClearCommentsPostImage = () => dispatch => {
     dispatch(clearCommentsPostImage());
 };
