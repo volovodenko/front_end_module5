@@ -46,6 +46,8 @@ export default class Posts extends Component {
         }
         let endIndexItem = startIndexItem + 10 * this.props.numberCardsInRow - 1;
 
+        console.log(startIndexItem);
+
 
         return (
             <ul className='gallery'>
