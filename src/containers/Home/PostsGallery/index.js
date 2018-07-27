@@ -152,13 +152,13 @@ export default class PostsGallery extends Component {
             }
 
             // (scrollHeight - currentScroll - clientHeight) < 300
-            if (currentScroll > scrollHeight / 2
+            if (currentScroll > scrollHeight / 1.7
                 && this.homeGalleryList.length < this.props.homeGalleryList.length
             ) {
                 if (this._ismounted) {
                     //добавляем 5 строк карточек
                     this.setState({
-                        numberCardRows: this.state.numberCardRows + 2
+                        numberCardRows: this.state.numberCardRows + 1
                     });
                 }
 

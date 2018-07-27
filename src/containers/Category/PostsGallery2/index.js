@@ -137,14 +137,14 @@ export default class PostsGallery2 extends Component {
                 this.props.onChangeTakeUpVisible(true);
             }
 
-            if (currentScroll > scrollHeight / 2
+            if (currentScroll > scrollHeight / 1.7
                 && this.categoryGalleryList.length < this.props.categoryGalleryList.length
             ) {
 
                 if (this._ismounted){
                     //добавляем 5 строк карточек
                     this.setState({
-                        numberCardRows: this.state.numberCardRows + 2
+                        numberCardRows: this.state.numberCardRows + 1
                     });
                 }
 
